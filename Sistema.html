@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Sistema.css">
+    <link href="Sistema.py">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>KEFRESA S.A</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo-container">
+        <img src="Imagenes/Logo.jpeg" alt="Kefersa Logo" class="logo" >
+    </div>
+        <h1>Ingreso de Usuario</h1>
+
+        
+
+        <form class="login-form">
+
+            <label for="username">Usuario</label>
+
+            <input type="text" id="username" name="username" required>
+
+            
+
+            <label for="password">Contraseña</label>
+
+            <input type="password" id="password" name="password" required>
+
+            
+
+            <button type="submit">Ingresar</button>
+
+        </form>
+
+      
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Ejecutar la alerta solo si hubo un intento fallido de inicio de sesión
+                if (sessionStorage.getItem("login_attempt")) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: "Usuario o contraseña incorrectos",
+                    });
+                }
+                sessionStorage.removeItem("login_attempt"); // Eliminar bandera después de mostrar la alerta
+            });
+        </script>
+    
+
+    <script>
+        // Al enviar el formulario, marcar que hubo un intento de inicio de sesión
+        document.querySelector("form").addEventListener("submit", function() {
+            sessionStorage.setItem("login_attempt", "true");
+        });
+    </script>
+
+
+    </div>
+
+
+   
+
+</body>
+
+</html>

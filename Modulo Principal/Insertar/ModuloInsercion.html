@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="ModuloInsercion.css">
+    <link href="ModuloInserción.js">
+</head>
+<body>
+    <div class="window" id="productWindow">
+        <div class="window-header" id="windowHeader">
+            <div class="window-title">Gestión de Productos</div>
+            <div class="window-controls">
+                <div class="window-btn close-btn" id="closeBtn"></div>
+                <div class="window-btn min-btn" id="minBtn"></div>
+                <div class="window-btn max-btn" id="maxBtn"></div>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <form id="productForm">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="productName" class="required">Nombre del producto</label>
+                            <input type="text" id="productName" name="productName" required>
+                            <div class="error" id="nameError">Este campo es obligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productCategory" class="required">Categoría</label>
+                            <select id="productCategory" name="productCategory" required>
+                                <option value="">Seleccione...</option>
+                                <option value="perecedero">Perecedero</option>
+                                <option value="no_perecedero">No perecedero</option>
+                                <option value="canasta_basica">Canasta básica</option>
+                            </select>
+                            <div class="error" id="categoryError">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="unitPrice" class="required">Precio unitario</label>
+                            <input type="number" id="unitPrice" name="unitPrice" step="0.01" min="0" required>
+                            <div class="error" id="priceError">Este campo es obligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="unitMeasure" class="required">Unidad de medida</label>
+                            <select id="unitMeasure" name="unitMeasure" required>
+                                <option value="">Seleccione...</option>
+                                <option value="kg">Kilogramo (kg)</option>
+                                <option value="g">Gramo (g)</option>
+                                <option value="l">Litro (l)</option>
+                                <option value="ml">Mililitro (ml)</option>
+                                <option value="unidad">Unidad</option>
+                                <option value="paquete">Paquete</option>
+                                <option value="Docena">Docena</option>
+                            </select>
+                            <div class="error" id="measureError">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="minStock" class="required">Stock mínimo</label>
+                            <input type="number" id="minStock" name="minStock" min="0" required>
+                            <div class="error" id="minStockError">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="maxStock" class="required">Stock máximo</label>
+                            <input type="number" id="maxStock" name="maxStock" min="0" required>
+                            <div class="error" id="maxStockError">Este campo es obligatorio</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expiryDate">Fecha de caducidad (si aplica)</label>
+                    <input type="date" id="expiryDate" name="expiryDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="productImage">Imagen del producto</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn-submit">Guardar Producto</button>
+            </form>
+        </div>
+    </div>
+    <script src="producto.js"></script>
+</body>
+</html>

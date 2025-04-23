@@ -45,27 +45,42 @@
         </form>
 
       
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Ejecutar la alerta solo si hubo un intento fallido de inicio de sesión
-                if (sessionStorage.getItem("login_attempt")) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: "Usuario o contraseña incorrectos",
-                    });
-                }
-                sessionStorage.removeItem("login_attempt"); // Eliminar bandera después de mostrar la alerta
-            });
-        </script>
-    
+      <script>
+    document.querySelector("form").addEventListener("submit", async function (e) {
+        e.preventDefault(); // Evita que se recargue la página
 
-    <script>
-        // Al enviar el formulario, marcar que hubo un intento de inicio de sesión
-        document.querySelector("form").addEventListener("submit", function() {
-            sessionStorage.setItem("login_attempt", "true");
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch("https://TUDOMINIO.com/api/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
         });
-    </script>
+
+        const data = await response.json();
+
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: '¡Bienvenido!',
+                text: `Hola ${data.username}`
+            }).then(() => {
+                // Aquí puedes redirigir al usuario si quieres
+                // window.location.href = "/dashboard.html";
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.error
+            });
+        }
+    });
+</script>
+
 
 
    
